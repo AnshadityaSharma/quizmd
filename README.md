@@ -30,6 +30,7 @@ An interactive Python tool that reads Markdown lecture files and generates quiz 
    ```
 
 3. **Download NLTK data (first run only):**
+   
    The tool will automatically download required NLTK data on first run, but you can also do it manually:
    ```python
    import nltk
@@ -56,39 +57,39 @@ python main.py lecture.md --save
 
 Once the tool is running, you can use these commands:
 
-- **Ask direct questions (Q&A mode):**
-  ```
-  > what is narrow ai
-  > what is machine learning
-  > what are intelligent agents
-  ```
+**Ask direct questions (Q&A mode):**
+```
+> what is narrow ai
+> what is machine learning
+> what are intelligent agents
+```
 
-- **Generate topic-specific questions:**
-  ```
-  > Give me 5 questions on Scrum cycles
-  > Ask me 3 questions about software testing
-  > Give me 10 questions on Agile methodology
-  > quiz me on machine learning
-  ```
+**Generate topic-specific questions:**
+```
+> Give me 5 questions on Scrum cycles
+> Ask me 3 questions about software testing
+> Give me 10 questions on Agile methodology
+> quiz me on machine learning
+```
 
-- **Auto-quiz mode (random questions):**
-  ```
-  > autoquiz
-  ```
+**Auto-quiz mode (random questions):**
+```
+> autoquiz
+```
 
-- **Get explanation for a question:**
-  ```
-  > explain question 2
-  ```
+**Get explanation for a question:**
+```
+> explain question 2
+```
 
-- **Quit:**
-  ```
-  > quit
-  ```
+**Quit:**
+```
+> quit
+```
 
 ## Example Interaction
 
-```
+```bash
 $ python main.py ai_lecture.md
 
 Loading file: ai_lecture.md
@@ -202,6 +203,7 @@ The tool tries multiple strategies and uses fallback mechanisms to ensure the re
 ### Answer Evaluation
 
 Answers are evaluated using:
+
 - **Fuzzy Matching**: SequenceMatcher for overall similarity (40% weight)
 - **Keyword Overlap**: Jaccard similarity of important keywords (60% weight)
 - **Key Phrase Detection**: Checks for important 2-3 word phrases
@@ -219,25 +221,33 @@ Default similarity threshold: 60% (configurable)
 
 ## Troubleshooting
 
-**Error: NLTK data not found**
-- The tool will try to download it automatically
-- If that fails, manually download: `python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('averaged_perceptron_tagger')"`
+### Error: NLTK data not found
 
-**Error: File not found**
+The tool will try to download it automatically. If that fails, manually download:
+
+```bash
+python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('averaged_perceptron_tagger')"
+```
+
+### Error: File not found
+
 - Check that the path to your Markdown file is correct
 - Use absolute paths if needed
 
-**Questions seem generic or not relevant**
+### Questions seem generic or not relevant
+
 - The tool works best with well-structured Markdown files
 - Make sure your file has clear sections and content related to the topics you're asking about
 - Try being more specific with your topic queries
 
-**Not enough questions generated**
+### Not enough questions generated
+
 - The tool now uses multiple fallback strategies to ensure all requested questions are generated
 - If you still get fewer questions, try a different topic or use `autoquiz` for general questions
 - Make sure your lecture file has enough content on the requested topic
 
-**Q&A not finding answers**
+### Q&A not finding answers
+
 - Try rephrasing your question (e.g., "what is X" instead of "explain X")
 - Make sure the term exists in the lecture file
 - The tool works best for definition-style questions
@@ -245,5 +255,3 @@ Default similarity threshold: 60% (configurable)
 ## License
 
 This project is provided as-is for educational and personal use.
-#   q u i z m d  
- 
